@@ -1,3 +1,30 @@
 * {
   box-sizing: border-box;
 }
+
+.header {
+  width: 50%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.booksContainer {
+  border: 2px black solid;
+  margin: 10px;
+  width: 50%;
+  /* min-width: max-content; */
+  margin: auto;
+}
+
+.book-card {
+  display: flex;
+  border: 0.5px gray solid;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.input {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}

@@ -28,10 +28,12 @@ function removeBookLS(id) {
 let bookList = getBooks();
 
 // Book Constructor function
-function Book(title, author) {
-  this.title = title;
-  this.author = author;
-  this.id = bookList.length + 1;
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+    this.id = bookList.length + 1;
+  }
 }
 
 // Book Card Template
@@ -40,20 +42,15 @@ function bookCard({ title, author, id }) {
   cardHolder.classList.add('book-card');
   cardHolder.id = id; // Each book card holder assigned book id
 
-  const titleEl = document.createElement('div');
-  titleEl.textContent = title;
-
-  const authorEl = document.createElement('div');
-  authorEl.textContent = author;
+  const displayEl = document.createElement('div');
+  displayEl.textContent = `"${title}" by ${author}`
 
   const removeBtn = document.createElement('button');
   removeBtn.type = 'button';
   removeBtn.textContent = 'remove';
   removeBtn.classList.add('remove-btn');
 
-  const hr = document.createElement('hr');
-
-  cardHolder.append(titleEl, authorEl, removeBtn, hr);
+  cardHolder.append(displayEl, removeBtn);
   return cardHolder;
 }
 
