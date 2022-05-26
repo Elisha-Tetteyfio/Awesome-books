@@ -25,7 +25,7 @@ function removeBookLS(id) {
   localStorage.setItem('bookList', JSON.stringify(books));
 }
 
-/* eslint-disable max-classes-per-file */
+/* eslint-disable max-classes-per-file: "error"*/
 
 class Book {
   constructor(title, author) {
@@ -34,7 +34,7 @@ class Book {
   }
 }
 
-/* eslint-enable max-classes-per-file */
+/* eslint-enable max-classes-per-file: "error"*/
 
 class BookCollection {
   static bookList = getBooks();
