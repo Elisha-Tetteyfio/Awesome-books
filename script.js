@@ -25,47 +25,51 @@ function removeBookLS(id) {
   localStorage.setItem('bookList', JSON.stringify(books));
 }
 
-let bookList = getBooks();
-
-// Book Constructor function
+// Book Class
 class Book {
   constructor(title, author) {
     this.title = title;
-    this.author = author;
-    this.id = bookList.length + 1;
+    this.author = author;   
   }
-}
+};
 
-// Book Card Template
-function bookCard({ title, author, id }) {
-  const cardHolder = document.createElement('div');
-  cardHolder.classList.add('book-card');
-  cardHolder.id = id; // Each book card holder assigned book id
+class BookCollection {
+  static bookList = getBooks();
 
-  const displayEl = document.createElement('div');
-  displayEl.textContent = `"${title}" by ${author}`
+  static bookCard({ title, author }) {
+    const cardHolder = document.createElement('div');
+    cardHolder.classList.add('book-card');
+    cardHolder.id = BookCollection.bookList.length + 1; // Each book card holder assigned book id
+  
+    const displayEl = document.createElement('div');
+    displayEl.textContent = `"${title}" by ${author}`
+  
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'remove';
+    removeBtn.classList.add('remove-btn');
+  
+    cardHolder.append(displayEl, removeBtn);
+    return cardHolder;
+  };
 
-  const removeBtn = document.createElement('button');
-  removeBtn.type = 'button';
-  removeBtn.textContent = 'remove';
-  removeBtn.classList.add('remove-btn');
+  static addBookUI(book) {   
+    const bookContainer = document.querySelector('.booksContainer');
+    bookContainer.appendChild(BookCollection.bookCard(book));
+    BookCollection.bookList = [...BookCollection.bookList, book]; // Add Book to bookList. Alternative to bookList.push(book)
+  };
 
-  cardHolder.append(displayEl, removeBtn);
-  return cardHolder;
-}
-
-// Display books in Booklist on page load
-function bookDisplay() {
-  const bookContainer = document.querySelector('.booksContainer');
-  bookList.forEach((book) => bookContainer.appendChild(bookCard(book)));
-}
-
-// Add Book to Array & UI
-function addBookUI(book) {
-  const bookContainer = document.querySelector('.booksContainer');
-  bookContainer.appendChild(bookCard(book));
-  bookList = [...bookList, book]; // Add Book to bookList. Alternative to bookList.push(book)
-}
+  // Display books in Booklist on page load
+  static bookDisplay() {
+    const bookContainer = document.querySelector('.booksContainer');
+    BookCollection.bookList.forEach((book) => bookContainer.appendChild(BookCollection.bookCard(book)));
+  };
+  
+  // Remove book
+  static removeBook(id) {   
+    BookCollection.bookList = BookCollection.bookList.filter((item) => (item.id).toString() !== id);
+  };
+};
 
 // Clear form fields
 function clearFormFields() {
@@ -73,14 +77,9 @@ function clearFormFields() {
   document.querySelector('#book-author').value = '';
 }
 
-// Remove book
-function removeBook(id) {
-  bookList = bookList.filter((item) => (item.id).toString() !== id);
-}
-
 // All Events
 // Display books on page load
-window.addEventListener('DOMContentLoaded', bookDisplay);
+window.addEventListener('DOMContentLoaded', BookCollection.bookDisplay);
 
 // Add Book Event
 const formEl = document.querySelector('#book-form');
@@ -92,7 +91,8 @@ formEl.addEventListener('click', (e) => {
   if (title !== '' && author !== '') {
     if (e.target.classList.contains('addButton')) {
       const newBook = new Book(title, author);
-      addBookUI(newBook);
+      newBook.id = BookCollection.bookList.length + 1;
+      BookCollection.addBookUI(newBook);
       addBookToLS(newBook); // Add book to booklist in localStorage
       clearFormFields();
       formEl.submit();
@@ -104,8 +104,8 @@ formEl.addEventListener('click', (e) => {
 const bookContainer = document.querySelector('.booksContainer');
 bookContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove-btn')) {
-    const bookId = e.target.parentElement.id; // Card holder ID traversed here
-    removeBook(bookId);
+    const bookId = e.target.parentElement.id; // Card holder ID traversed here   
+    BookCollection.removeBook(bookId);
     removeBookLS(bookId);
     e.target.parentElement.remove();
   }
