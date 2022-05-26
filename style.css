@@ -10,8 +10,8 @@
 
 .booksContainer {
   border: 2px black solid;
-  margin: 10px;
   width: 50%;
+
   /* min-width: max-content; */
   margin: auto;
 }

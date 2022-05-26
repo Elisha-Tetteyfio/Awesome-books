@@ -25,51 +25,57 @@ function removeBookLS(id) {
   localStorage.setItem('bookList', JSON.stringify(books));
 }
 
-// Book Class
+/* eslint-disable max-classes-per-file */
+
 class Book {
   constructor(title, author) {
     this.title = title;
-    this.author = author;   
+    this.author = author;
   }
-};
+}
+
+/* eslint-enable max-classes-per-file */
 
 class BookCollection {
   static bookList = getBooks();
 
-  static bookCard({ title, author }) {
+  static bookCard({ title, author, id }) {
     const cardHolder = document.createElement('div');
     cardHolder.classList.add('book-card');
-    cardHolder.id = BookCollection.bookList.length + 1; // Each book card holder assigned book id
-  
+    cardHolder.id = id; // Each book card holder assigned book id
+
     const displayEl = document.createElement('div');
-    displayEl.textContent = `"${title}" by ${author}`
-  
+    displayEl.textContent = `"${title}" by ${author}`;
+
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.textContent = 'remove';
     removeBtn.classList.add('remove-btn');
-  
+
     cardHolder.append(displayEl, removeBtn);
     return cardHolder;
-  };
+  }
 
-  static addBookUI(book) {   
+  static addBookUI(book) {
     const bookContainer = document.querySelector('.booksContainer');
     bookContainer.appendChild(BookCollection.bookCard(book));
-    BookCollection.bookList = [...BookCollection.bookList, book]; // Add Book to bookList. Alternative to bookList.push(book)
-  };
+    // Add Book to bookList. Alternative to bookList.push(book)
+    BookCollection.bookList = [...BookCollection.bookList, book];
+  }
 
   // Display books in Booklist on page load
   static bookDisplay() {
     const bookContainer = document.querySelector('.booksContainer');
-    BookCollection.bookList.forEach((book) => bookContainer.appendChild(BookCollection.bookCard(book)));
-  };
-  
+    BookCollection.bookList.forEach((book) => {
+      bookContainer.appendChild(BookCollection.bookCard(book));
+    });
+  }
+
   // Remove book
-  static removeBook(id) {   
+  static removeBook(id) {
     BookCollection.bookList = BookCollection.bookList.filter((item) => (item.id).toString() !== id);
-  };
-};
+  }
+}
 
 // Clear form fields
 function clearFormFields() {
@@ -104,7 +110,7 @@ formEl.addEventListener('click', (e) => {
 const bookContainer = document.querySelector('.booksContainer');
 bookContainer.addEventListener('click', (e) => {
   if (e.target.classList.contains('remove-btn')) {
-    const bookId = e.target.parentElement.id; // Card holder ID traversed here   
+    const bookId = e.target.parentElement.id; // Card holder ID traversed here
     BookCollection.removeBook(bookId);
     removeBookLS(bookId);
     e.target.parentElement.remove();
