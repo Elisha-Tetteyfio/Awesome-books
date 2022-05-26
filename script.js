@@ -27,11 +27,9 @@ function removeBookLS(id) {
 
 /* eslint-disable max-classes-per-file */
 
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
+function Book(title, author) {
+  this.title = title;
+  this.author = author;
 }
 
 /* eslint-enable max-classes-per-file */
