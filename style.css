@@ -5,14 +5,14 @@
 }
 
 header {
-    display: flex;
-    width: 80%;
-    margin: 10px auto 0;
-    padding: 10px;
-    border: 3px black solid;
-    justify-content: space-between;
-    align-items: center;
-  } 
+  display: flex;
+  width: 80%;
+  margin: 10px auto 0;
+  padding: 10px;
+  border: 3px black solid;
+  justify-content: space-between;
+  align-items: center;
+}
 
 #nav-links {
   display: flex;
@@ -24,8 +24,8 @@ header {
   list-style: none;
 }
 
-#nav-links li:last-child {  
-  border-right: none; 
+#nav-links li:last-child {
+  border-right: none;
 }
 
 #nav-links li a {
@@ -44,13 +44,13 @@ main {
 }
 
 .tab-content {
-    display: none;
+  display: none;
 }
 
 .booksContainer {
   border: 2px black solid;
-  width: 80%; 
-  margin: auto; 
+  width: 80%;
+  margin: auto;
 }
 
 .book-card {
@@ -64,14 +64,15 @@ main {
   width: 40%;
   margin: auto;
   text-align: center;
-  padding: 0 3.5rem 1rem; 
+  padding: 0 3.5rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form h2,#contact h2 {
-    margin: 2.5rem 0 4rem;
+.form h2,
+#contact h2 {
+  margin: 2.5rem 0 4rem;
 }
 
 .form input {
@@ -87,26 +88,27 @@ main {
 
 #contact {
   width: 80%;
-  margin: 0 auto;  
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#contact h2,#contact p {
-    text-align: center;
+#contact h2,
+#contact p {
+  text-align: center;
 }
 
 #contact ul {
-    width: max-content;  
-    margin: 1.5rem auto; 
+  width: max-content;
+  margin: 1.5rem auto;
 }
 
 footer {
   width: 80%;
-  margin: 10px auto; 
+  margin: 10px auto;
   border: 3px black solid;
-  padding: 20px; 
+  padding: 20px;
   bottom: 0;
-  left: 8.2998rem; 
+  left: 8.2998rem;
 }
