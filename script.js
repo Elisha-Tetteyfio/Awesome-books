@@ -77,6 +77,34 @@ function clearFormFields() {
   document.querySelector('#book-author').value = '';
 }
 
+// Nav-links click function
+function handleLinkClick(e){
+ var i, tabcontent, tabLinks;
+  tabcontent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tabLinks = document.getElementsByClassName("links");
+  for (i = 0; i < tabLinks.length; i++) {
+    tabLinks[i].style.color = "";
+  }
+
+  if(e.target.classList.contains('book-list-link')){
+    document.querySelector('#allBooks').style.display = "block";
+    e.target.style.color = 'blue';
+  }
+  if(e.target.classList.contains('add-new-book')){
+    document.querySelector('#add-book-form').style.display = "block";
+    e.target.style.color = 'blue';
+  }
+  if(e.target.classList.contains('contact-sec')) {
+    document.querySelector('#contact').style.display = "block";
+    e.target.style.color = 'blue';
+  }  
+}
+
+
 // All Events
 // Display books on page load
 window.addEventListener('DOMContentLoaded', BookCollection.bookDisplay);
@@ -111,4 +139,6 @@ bookContainer.addEventListener('click', (e) => {
   }
 });
 
-const header = document.querySelector('.header');
+// Nav-links event
+document.getElementById('nav-links').addEventListener('click', handleLinkClick);
+document.getElementById("defaultOpen").click(); //Click on the list nav-link at default on page load
