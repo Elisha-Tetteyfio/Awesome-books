@@ -110,3 +110,5 @@ bookContainer.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   }
 });
+
+const header = document.querySelector('.header');

@@ -9,9 +9,20 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1 class="header">All Awesome books</h1>
-  <div class="booksContainer">
+  <header>
+    <div>Awesome Books</div>
+    <div>
+      <ul id="nav-links">
+        <li> <a href="#allBooks" id="booksLink">List</a> </li>
+        <li> <a href="#book-form" id="formsLink">Add new</a> </li>
+        <li> <a href="#contact" id="contactLink">Contact</a> </li>
+      </ul>
+    </div>
+  </header>
 
+  <h1 class="header">All Awesome books</h1>
+
+  <div class="booksContainer" id="allBooks">
   </div>
   <div>
     <form action="#"  id="book-form" class="input">
@@ -21,5 +32,18 @@
       <button type="submit" class="addButton" >Add</button>
     </form>
   </div>
+
+  <div id="contact">
+    <h2>Contact form</h2>
+      Do you have any questions or you just want to say "Hello"? <br> 
+      You can reach out to us!
+      <ul>
+        <li>Our e-mail: mail@mail.com</li>
+        <li>Our phone number: 004349858840303</li>
+        <li>Our address: Street name 22, 234322 City, Country</li>
+      </ul>
+    </div>
+
+    <footer>Copyright : Some rights reserved</footer>
 </body>
 </html>
