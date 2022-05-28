@@ -77,6 +77,96 @@ function clearFormFields() {
   document.querySelector('#book-author').value = '';
 }
 
+// Nav-links click function
+function handleLinkClick(e) {
+  let i;
+  const tabcontent = document.getElementsByClassName('tab-content');
+  for (i = 0; i < tabcontent.length; i += 1) {
+    tabcontent[i].style.display = 'none';
+  }
+
+  const tabLinks = document.getElementsByClassName('links');
+  for (i = 0; i < tabLinks.length; i += 1) {
+    tabLinks[i].style.color = '';
+  }
+
+  if (e.target.classList.contains('book-list-link')) {
+    document.querySelector('#allBooks').style.display = 'block';
+    e.target.style.color = 'blue';
+  }
+  if (e.target.classList.contains('add-new-book')) {
+    document.querySelector('#add-book-form').style.display = 'block';
+    e.target.style.color = 'blue';
+  }
+  if (e.target.classList.contains('contact-sec')) {
+    document.querySelector('#contact').style.display = 'block';
+    e.target.style.color = 'blue';
+  }
+}
+
+// Date
+function getDate() {
+  const date = new Date();
+  const month = date.getMonth();
+  const day = date.getUTCDate();
+  const year = date.getFullYear();
+
+  function monthDate(num) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'October', 'November', 'December'];
+    let mymonth;
+    months.forEach((month, index) => {
+      if (num === index) {
+        mymonth = month;
+      }
+    });
+    return mymonth;
+  }
+
+  function daySuffix(day) {
+    const newDay = day.toString();
+    const lastChar = newDay.length - 1;
+    if (newDay[lastChar] === '0') {
+      return '';
+    } if (newDay[lastChar] === '1') {
+      return 'st';
+    } if (newDay[lastChar] === '2') {
+      return 'nd';
+    } if (newDay[lastChar] === '3') {
+      return 'rd';
+    }
+    return 'th';
+  }
+
+  return `${monthDate(month)} ${day}${daySuffix(day)} 
+  ${year},`;
+}
+
+function getTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getMinutes();
+  function getTime(time) {
+    if (time < 12) {
+      return 'am';
+    }
+    return 'pm';
+  }
+  return `${hour}:${minutes}:${seconds} ${getTime(hour)}`;
+}
+
+function insertDate() {
+  const navbar = document.querySelector('header');
+
+  const dateEl = document.createElement('div');
+  dateEl.classList.add('date');
+
+  dateEl.innerHTML = `${getDate()} ${getTime()}`;
+  navbar.appendChild(dateEl);
+}
+insertDate();
+
 // All Events
 // Display books on page load
 window.addEventListener('DOMContentLoaded', BookCollection.bookDisplay);
@@ -110,3 +200,7 @@ bookContainer.addEventListener('click', (e) => {
     e.target.parentElement.remove();
   }
 });
+
+// Nav-links event
+document.getElementById('nav-links').addEventListener('click', handleLinkClick);
+document.getElementById('defaultOpen').click(); // Click on the list nav-link at default on page load

@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Awesome Books Project</title>
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
-  <h1 class="header">All Awesome books</h1>
-  <div class="booksContainer">
 
-  </div>
-  <div>
-    <form action="#"  id="book-form" class="input">
-      <h2>Add a new book</h2>
-      <input type="text" placeholder="Title" class="addAuthor" id="book-name" required> <br> <br>
-      <input type="text" placeholder="Author"  class="addTitle" id="book-author" required> <br> <br>
-      <button type="submit" class="addButton" >Add</button>
-    </form>
-  </div>
+<body>
+  <header>
+    <h1>Awesome Books</h1>
+    <div>
+      <ul id="nav-links">
+        <li> <a href="#" class="links book-list-link" id="defaultOpen">List</a> </li>
+        <li> <a href="#" class="links add-new-book">Add new</a> </li>
+        <li> <a href="#" class="links contact-sec">Contact</a> </li>
+      </ul>
+    </div>   
+  </header>
+  <main>
+    <section id="allBooks" class="tab-content">
+      <h2 class="header">All Awesome books</h2>
+      <div class="booksContainer" >
+      </div>
+    </section>   
+
+    <section id="add-book-form" class="tab-content">
+      <form action="#" id="book-form" class="form">
+        <h2>Add a new book</h2>
+        <input type="text" placeholder="Title" class="addAuthor" id="book-name" required> <br> <br>
+        <input type="text" placeholder="Author" class="addTitle" id="book-author" required> <br> <br>
+        <button type="submit" class="addButton">Add</button>
+      </form>
+    </section>
+
+    <section id="contact" class="tab-content">
+      <h2>Contact Information</h2>
+     <p>Do you have any questions or you just want to say "Hello"? <br>
+      &nbsp;&nbsp;You can reach out to us!</p> 
+     
+      <ul>
+        <li>Our e-mail: mail@mail.com</li>
+        <li>Our phone number: 004349858840303</li>
+        <li>Our address: Street name 22, 234322 City, Country</li>
+      </ul>
+    </section>
+
+   
+  </main>
+  <footer>Copyright : Some rights reserved</footer>
 </body>
+
 </html>
