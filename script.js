@@ -104,6 +104,69 @@ function handleLinkClick(e) {
   }
 }
 
+// Date
+function getDate() {
+  const date = new Date();
+  const month = date.getMonth();
+  const day = date.getUTCDate();
+  const year = date.getFullYear();
+
+  function monthDate(num) {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+      'August', 'September', 'October', 'November', 'December'];
+    let mymonth;
+    months.forEach((month, index) => {
+      if (num === index) {
+        mymonth = month;
+      }
+    });
+    return mymonth;
+  }
+
+  function daySuffix(day) {
+    const newDay = day.toString();
+    const lastChar = newDay.length - 1;
+    if (newDay[lastChar] === '0') {
+      return '';
+    } if (newDay[lastChar] === '1') {
+      return 'st';
+    } if (newDay[lastChar] === '2') {
+      return 'nd';
+    } if (newDay[lastChar] === '3') {
+      return 'rd';
+    }
+    return 'th';
+  }
+
+  return `${monthDate(month)} ${day}${daySuffix(day)} 
+  ${year},`;
+}
+
+function getTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getMinutes();
+  function getTime(time) {
+    if (time < 12) {
+      return 'am';
+    }
+    return 'pm';
+  }
+  return `${hour}:${minutes}:${seconds} ${getTime(hour)}`;
+}
+
+function insertDate() {
+  const navbar = document.querySelector('header');
+
+  const dateEl = document.createElement('div');
+  dateEl.classList.add('date');
+
+  dateEl.innerHTML = `${getDate()} ${getTime()}`;
+  navbar.appendChild(dateEl);
+}
+insertDate();
+
 // All Events
 // Display books on page load
 window.addEventListener('DOMContentLoaded', BookCollection.bookDisplay);

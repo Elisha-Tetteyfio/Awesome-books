@@ -12,6 +12,14 @@ header {
   border: 3px black solid;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+}
+
+.date {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  font-weight: bold;
 }
 
 #nav-links {
